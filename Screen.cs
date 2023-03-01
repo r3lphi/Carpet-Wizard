@@ -23,4 +23,7 @@ public class Screen
             e.Draw(spriteBatch);
         }
     }
+    public void DrawDebug(SpriteBatch spriteBatch){
+        
+    }
 }

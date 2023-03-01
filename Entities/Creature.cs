@@ -10,9 +10,16 @@ public abstract class Creature : Entity
     protected PhysicsBody physicsBody;
     protected int direction;
 
+    public Creature(){
+        transform = new Transform();
+    }
+    public Creature(Transform transform){
+        this.transform = transform;
+    }
+
     public override void Update(GameTime gameTime)
     {
-        physicsBody.Update();
+        physicsBody.Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {

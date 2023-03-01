@@ -52,7 +52,7 @@ public class Player : Creature
             })
         });
 
-        collider = new Collider(transform, physicsBody);
+        collider = new Collider(this, transform, physicsBody);
     }
 
     public override void Update(GameTime gameTime)
@@ -68,7 +68,7 @@ public class Player : Creature
             direction = -1;
         }
 
-        collider.Update();
+        collider.Update(gameTime);
 
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
         animator.SetGlobalDriver("isMoving", ConvertsExtended.BoolToInt(isMoving));

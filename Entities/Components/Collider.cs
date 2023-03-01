@@ -10,18 +10,19 @@ public class Collider
     private Transform transform;
     private PhysicsBody physicsBody;
 
-    public Collider(Transform _transform, PhysicsBody _physicsBody){
+    public Collider(Entity connectedObject, Transform _transform, PhysicsBody _physicsBody)
+    {
         transform = _transform;
         physicsBody = _physicsBody;
     }
 
-    public void Update(){
+    public void Update(GameTime gameTime){
 
     }
     public void Draw(SpriteBatch spriteBatch){
-        Texture2D rect = new Texture2D(Globals.Graphics.GraphicsDevice, 1, 1);
-        rect.SetData(new[] { Color.White });
+        // Texture2D rect = new Texture2D(Globals.Graphics.GraphicsDevice, 1, 1);
+        // rect.SetData(new[] { Color.White });
 
-        spriteBatch.Draw(rect, new Rectangle((int)transform.GetPosition().X, (int)transform.GetPosition().Y, 10, 10), Color.Red);
+        // spriteBatch.Draw(rect, new Rectangle((int)transform.GetPosition().X, (int)transform.GetPosition().Y, 10, 10), Color.Red);
     }
 }

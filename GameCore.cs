@@ -13,14 +13,13 @@ public class GameCore : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private DisplayHander _display;
-
-    private Screen activeScreen;
+    private ProgramState activeProgramState;
 
     public GameCore()
     {
         _graphics = new GraphicsDeviceManager(this);
 
-        _display = new DisplayHander(_graphics, 640, 360);
+        _display = new DisplayHander(_graphics, 512, 288);
 
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -31,17 +30,8 @@ public class GameCore : Game
         // TODO: Add your initialization logic here
         Globals.Initialize(Content, _spriteBatch, _graphics);
 
-        Player player = new Player();
-        player.Recenter();
-
-        Object snowTile = new Object(Globals.s_Level[0], new Transform(new Vector2(
-            (_graphics.PreferredBackBufferWidth / 2) - (Globals.s_Level[0].Width / 2),
-            (_graphics.PreferredBackBufferHeight / 2) - (Globals.s_Level[0].Height / 2) + Globals.s_Level[0].Height
-        ), 0, Vector2.One));
-
-        activeScreen = new Screen(new List<Entity>{
-            player, snowTile
-        });
+        activeProgramState = new GameplayState();
+        activeProgramState.Initialize();
 
         base.Initialize();
     }
@@ -65,7 +55,7 @@ public class GameCore : Game
         // TODO: Add your update logic here
         Globals.Update(gameTime);
 
-        activeScreen.Update(gameTime);
+        activeProgramState.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -77,7 +67,7 @@ public class GameCore : Game
 
         _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
 
-        activeScreen.Draw(_spriteBatch);
+        activeProgramState.Draw(_spriteBatch);
 
         _spriteBatch.End();
 

@@ -19,7 +19,7 @@ public class PhysicsBody
         velocity = Vector2.Zero;
     }
 
-    public void Update()
+    public void Update(GameTime gameTime)
     {
         velocity.Y += gravity * Globals.DeltaTime;
 
