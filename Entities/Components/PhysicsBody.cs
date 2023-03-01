@@ -30,11 +30,10 @@ public class PhysicsBody : Component
         //Horizontal Friction
         velocity.X -= velocity.X * (friction * Globals.DeltaTime);
     }
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 
     public void AddForce(Vector2 force){
         velocity += force;
     }
-
-    public override void Draw(SpriteBatch spriteBatch)
-    {}
 }

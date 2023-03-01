@@ -23,6 +23,8 @@ public class Animator : Component
             branch.Update(GlobalDrivers, this);
         }
     }
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 
     public void SetGlobalDriver(string driver, int value){
         GlobalDrivers[driver] = value;
@@ -34,7 +36,4 @@ public class Animator : Component
     public Texture2D GetActiveSprite(){
         return activeSprite;
     }
-
-    public override void Draw(SpriteBatch spriteBatch)
-    {}
 }

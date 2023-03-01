@@ -19,7 +19,7 @@ public static class Globals
     public static Vector2 Canvas_Offset { get; set; }
 
     //Assetworks
-    public static Texture2D[] s_Player, s_Level;
+    public static Texture2D[] s_Player, s_Level, s_Misc;
 
     //Methods
     public static void Initialize(ContentManager _content, SpriteBatch _spriteBatch, GraphicsDeviceManager _graphics){
@@ -48,6 +48,9 @@ public static class Globals
 
         s_Level = new Texture2D[1];
         s_Level[0] = Content.Load<Texture2D>("Snow");
+
+        s_Misc = new Texture2D[1];
+        s_Misc[0] = Content.Load<Texture2D>("MissingTex");
 
     }
     public static void Update(GameTime gameTime){

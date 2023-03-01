@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
+
 namespace Carpet_Wizard;
 
 public class Transform : Component
@@ -24,6 +26,8 @@ public class Transform : Component
 
     public override void Update(GameTime gameTime)
     {}
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 
     public Vector2 GetPosition(){
         return position;
@@ -42,10 +46,10 @@ public class Transform : Component
     public Vector2 GetScale(){
         return scale;
     }
+    public Vector2 GetScaleABS(){
+        return new Vector2(Math.Abs(scale.X), Math.Abs(scale.Y));
+    }
     public void SetScale(Vector2 _scale){
         scale = _scale;
     }
-
-    public override void Draw(SpriteBatch spriteBatch)
-    {}
 }

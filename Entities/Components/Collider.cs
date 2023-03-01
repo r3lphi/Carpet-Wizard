@@ -16,10 +16,16 @@ public class Collider : Component
         physicsBody = parentEntity.GetComponent<PhysicsBody>();
     }
 
+    public override void Update(GameTime gameTime)
+    {}
     public override void Draw(SpriteBatch spriteBatch)
     {
-    }
-
-    public override void Update(GameTime gameTime){
+        DebugTools.DrawEmptyRect(
+            spriteBatch,
+            (int)transform.GetPosition().X,
+            (int)transform.GetPosition().Y,
+            16,
+            16
+        );
     }
 }

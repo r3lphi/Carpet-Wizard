@@ -13,14 +13,11 @@ public class Player : Creature
     private Animation Anim_Idle, Anim_Run;
 
     //Localized Variables
-    private Transform transform;
     private PhysicsBody physicsBody;
     private Animator animator;
     private Collider collider;
 
     public Player(){
-        sprite = Globals.s_Player[0];
-
         AddComponent(new PhysicsBody(this, GetComponent<Transform>()));
 
         Anim_Idle = new Animation(new AnimationFrame[]{
@@ -52,10 +49,13 @@ public class Player : Creature
 
     public override void Initialize()
     {
+        base.Initialize();
+
         transform = GetComponent<Transform>();
         physicsBody = GetComponent<PhysicsBody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider>();
+        spriteRenderer.SetSprite(Globals.s_Player[0]);
     }
 
     public override void Update(GameTime gameTime)
@@ -64,11 +64,11 @@ public class Player : Creature
 
         if (keyState.IsKeyDown(Keys.D)){
             physicsBody.AddForce(new Vector2(moveSpeed * Globals.DeltaTime, 0));
-            direction = 1;
+            transform.SetScale(new Vector2(transform.GetScaleABS().X, transform.GetScale().Y));
         }
         if (keyState.IsKeyDown(Keys.A)){
             physicsBody.AddForce(new Vector2(-moveSpeed * Globals.DeltaTime, 0));
-            direction = -1;
+            transform.SetScale(new Vector2(-transform.GetScaleABS().X, transform.GetScale().Y));
         }
 
         collider.Update(gameTime);
@@ -82,7 +82,7 @@ public class Player : Creature
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
-        sprite = animator.GetActiveSprite();
+        spriteRenderer.SetSprite(animator.GetActiveSprite());
 
         collider.Draw(spriteBatch);
 

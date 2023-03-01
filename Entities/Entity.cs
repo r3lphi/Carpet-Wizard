@@ -31,6 +31,7 @@ public abstract class Entity
     }
 
     public abstract void Initialize();
+    
     public virtual void Update(GameTime gameTime){
         foreach(Component _comp in Components){
             _comp.Update(gameTime);

@@ -5,21 +5,34 @@ namespace Carpet_Wizard;
 
 public class Tile : Entity
 {
-    public Tile(Texture2D sprite){
+    private SpriteRenderer spriteRenderer;
+    private Transform transform;
 
+    public Tile(Texture2D sprite){
+        AddComponent(new Transform(this));
+        AddComponent(new SpriteRenderer(this, sprite));
+
+        Initialize();
+    }
+    public Tile(Texture2D sprite, Transform transform){
+        AddComponent(transform);
+        AddComponent(new SpriteRenderer(this, sprite));
+
+        Initialize();
     }
 
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        transform = GetComponent<Transform>();
     }
 
     public override void Update(GameTime gameTime)
     {
-        throw new System.NotImplementedException();
+        base.Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
-        throw new System.NotImplementedException();
+        base.Draw(spriteBatch);
     }
 }
