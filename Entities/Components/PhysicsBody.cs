@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Carpet_Wizard;
 
-public class PhysicsBody
+public class PhysicsBody : Component
 {
     private Transform transform;
 
@@ -13,13 +14,14 @@ public class PhysicsBody
     //Stored Variables
     private Vector2 velocity;
 
-    public PhysicsBody(Transform _transform){
+    public PhysicsBody(Entity parentEntity, Transform _transform) : base(parentEntity)
+    {
         transform = _transform;
 
         velocity = Vector2.Zero;
     }
 
-    public void Update(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
         velocity.Y += gravity * Globals.DeltaTime;
 
@@ -32,4 +34,7 @@ public class PhysicsBody
     public void AddForce(Vector2 force){
         velocity += force;
     }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 }

@@ -1,10 +1,11 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Collections.Generic;
 
 namespace Carpet_Wizard;
 
-public class Animator
+public class Animator : Component
 {
     public AnimationBranch[] rootBranches;
 
@@ -12,11 +13,12 @@ public class Animator
 
     public Dictionary<string, int> GlobalDrivers = new Dictionary<string, int>();
 
-    public Animator(AnimationBranch[] _rootBranches){
+    public Animator(Entity parentEntity, AnimationBranch[] _rootBranches) : base(parentEntity)
+    {
         rootBranches = _rootBranches;
     }
 
-    public void Update(){
+    public override void Update(GameTime gameTime){
         foreach (AnimationBranch branch in rootBranches){
             branch.Update(GlobalDrivers, this);
         }
@@ -32,4 +34,7 @@ public class Animator
     public Texture2D GetActiveSprite(){
         return activeSprite;
     }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 }

@@ -5,24 +5,21 @@ using System.Collections.Generic;
 
 namespace Carpet_Wizard;
 
-public class Collider
+public class Collider : Component
 {
     private Transform transform;
     private PhysicsBody physicsBody;
 
-    public Collider(Entity connectedObject, Transform _transform, PhysicsBody _physicsBody)
+    public Collider(Entity parentEntity) : base(parentEntity)
     {
-        transform = _transform;
-        physicsBody = _physicsBody;
+        transform = parentEntity.GetComponent<Transform>();
+        physicsBody = parentEntity.GetComponent<PhysicsBody>();
     }
 
-    public void Update(GameTime gameTime){
-
+    public override void Draw(SpriteBatch spriteBatch)
+    {
     }
-    public void Draw(SpriteBatch spriteBatch){
-        // Texture2D rect = new Texture2D(Globals.Graphics.GraphicsDevice, 1, 1);
-        // rect.SetData(new[] { Color.White });
 
-        // spriteBatch.Draw(rect, new Rectangle((int)transform.GetPosition().X, (int)transform.GetPosition().Y, 10, 10), Color.Red);
+    public override void Update(GameTime gameTime){
     }
 }

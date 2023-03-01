@@ -11,25 +11,17 @@ public class Player : Creature
     private float moveSpeed = 40f;
     private float acceleration = 2f;
     private Animation Anim_Idle, Anim_Run;
+
+    //Localized Variables
+    private Transform transform;
+    private PhysicsBody physicsBody;
     private Animator animator;
     private Collider collider;
 
     public Player(){
-        transform = new Transform();
-
-        Initialize();
-    }
-    public Player(Transform _transform){
-        transform = _transform;
-
-        Initialize();
-    }
-
-    public override void Initialize()
-    {
         sprite = Globals.s_Player[0];
 
-        physicsBody = new PhysicsBody(transform);
+        AddComponent(new PhysicsBody(this, GetComponent<Transform>()));
 
         Anim_Idle = new Animation(new AnimationFrame[]{
             new AnimationFrame(Globals.s_Player[0], .2f),
@@ -44,7 +36,7 @@ public class Player : Creature
         });
         Anim_Run.SetDriver("isMoving", 1);
 
-        animator = new Animator(new AnimationBranch[]{
+        Animator animator = new Animator(this, new AnimationBranch[]{
             //Grounded Path
             new AnimationBranch(new AnimationBranchable[]{
                 Anim_Idle,
@@ -52,7 +44,18 @@ public class Player : Creature
             })
         });
 
-        collider = new Collider(this, transform, physicsBody);
+        AddComponent(animator);
+        AddComponent(new Collider(this));
+
+        Initialize();
+    }
+
+    public override void Initialize()
+    {
+        transform = GetComponent<Transform>();
+        physicsBody = GetComponent<PhysicsBody>();
+        animator = GetComponent<Animator>();
+        collider = GetComponent<Collider>();
     }
 
     public override void Update(GameTime gameTime)
@@ -73,9 +76,7 @@ public class Player : Creature
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
         animator.SetGlobalDriver("isMoving", ConvertsExtended.BoolToInt(isMoving));
 
-        Debug.WriteLine(ConvertsExtended.BoolToInt(isMoving));
-
-        animator.Update();
+        animator.Update(gameTime);
 
         base.Update(gameTime);
     }

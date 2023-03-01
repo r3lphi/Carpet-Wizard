@@ -3,22 +3,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Carpet_Wizard;
 
-public class Transform
+public class Transform : Component
 {
     private Vector2 position;
     private int rotation;
     private Vector2 scale;
 
-    public Transform(){
+    public Transform(Entity parentEntity) : base(parentEntity)
+    {
         position = Vector2.Zero;
         rotation = 0;
         scale = Vector2.One;
     }
-    public Transform(Vector2 _position, int _rotation, Vector2 _scale){
+    public Transform(Entity parentEntity, Vector2 _position, int _rotation, Vector2 _scale) : base(parentEntity)
+    {
         position = _position;
         rotation = _rotation;
         scale = _scale;
     }
+
+    public override void Update(GameTime gameTime)
+    {}
 
     public Vector2 GetPosition(){
         return position;
@@ -40,4 +45,7 @@ public class Transform
     public void SetScale(Vector2 _scale){
         scale = _scale;
     }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {}
 }

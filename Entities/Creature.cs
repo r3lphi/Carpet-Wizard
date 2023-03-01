@@ -6,20 +6,18 @@ namespace Carpet_Wizard;
 public abstract class Creature : Entity
 {
     protected Texture2D sprite;
-    protected Transform transform;
-    protected PhysicsBody physicsBody;
     protected int direction;
 
     public Creature(){
-        transform = new Transform();
+        AddComponent(new Transform(this));
     }
     public Creature(Transform transform){
-        this.transform = transform;
+        AddComponent(transform);
     }
 
     public override void Update(GameTime gameTime)
     {
-        physicsBody.Update(gameTime);
+        GetComponent<PhysicsBody>().Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
@@ -29,13 +27,13 @@ public abstract class Creature : Entity
             effector = SpriteEffects.FlipHorizontally;
         }
 
-        spriteBatch.Draw(sprite, transform.GetPosition(), null, Color.White, transform.GetRotation(), Vector2.Zero, transform.GetScale(), effector, 0);
+        spriteBatch.Draw(sprite, GetComponent<Transform>().GetPosition(), null, Color.White, GetComponent<Transform>().GetRotation(), Vector2.Zero, GetComponent<Transform>().GetScale(), effector, 0);
     }
 
     public void Recenter(){
-        transform.SetPosition(new Vector2(
-            (Globals.Graphics.PreferredBackBufferWidth / 2) - ((sprite.Width * transform.GetScale().X) / 2),
-            (Globals.Graphics.PreferredBackBufferHeight / 2) - ((sprite.Height * transform.GetScale().Y) / 2)
+        GetComponent<Transform>().SetPosition(new Vector2(
+            (Globals.Graphics.PreferredBackBufferWidth / 2) - ((sprite.Width * GetComponent<Transform>().GetScale().X) / 2),
+            (Globals.Graphics.PreferredBackBufferHeight / 2) - ((sprite.Height * GetComponent<Transform>().GetScale().Y) / 2)
         ));
     }
 }
