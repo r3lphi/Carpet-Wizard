@@ -10,7 +10,7 @@ public abstract class Creature : Entity
 
     public Creature(){
         AddComponent(new Transform(this));
-        AddComponent(new SpriteRenderer(this));
+        AddComponent(new SpriteRenderer(this, null, 1));
     }
     public Creature(Transform transform){
         AddComponent(transform);

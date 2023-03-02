@@ -28,7 +28,5 @@ public class GameplayState : ProgramState
     public override void Draw(SpriteBatch spriteBatch)
     {
         activeScreen.Draw(spriteBatch);
-
-        activeScreen.DrawDebug(spriteBatch);
     }
 }

@@ -17,12 +17,15 @@ public static class Globals
     public static int Tile_Size { get; set; }
     public static Vector2 Canvas_Size { get; set; }
     public static Vector2 Canvas_Offset { get; set; }
+    public static bool DebugMode { get; set; }
 
     //Assetworks
     public static Texture2D[] s_Player, s_Level, s_Misc;
 
     //Methods
     public static void Initialize(ContentManager _content, SpriteBatch _spriteBatch, GraphicsDeviceManager _graphics){
+        DebugMode = true;
+
         Gravity = 9.81f;
 
         Content = _content;

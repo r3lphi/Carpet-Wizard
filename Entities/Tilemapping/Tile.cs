@@ -10,13 +10,13 @@ public class Tile : Entity
 
     public Tile(Texture2D sprite){
         AddComponent(new Transform(this));
-        AddComponent(new SpriteRenderer(this, sprite));
+        AddComponent(new SpriteRenderer(this, sprite, 0));
 
         Initialize();
     }
     public Tile(Texture2D sprite, Transform transform){
         AddComponent(transform);
-        AddComponent(new SpriteRenderer(this, sprite));
+        AddComponent(new SpriteRenderer(this, sprite, 0));
 
         Initialize();
     }

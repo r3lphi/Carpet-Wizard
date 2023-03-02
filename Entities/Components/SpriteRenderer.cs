@@ -7,15 +7,25 @@ public class SpriteRenderer : Component
 {
     private Transform transform;
     private Texture2D sprite;
+    private int layer;
 
     public SpriteRenderer(Entity parentEntity) : base(parentEntity)
     {
         sprite = Globals.s_Misc[0];
+
         transform = parentEntity.GetComponent<Transform>();
     }
     public SpriteRenderer(Entity parentEntity, Texture2D sprite) : base(parentEntity)
     {
         this.sprite = sprite;
+
+        transform = parentEntity.GetComponent<Transform>();
+    }
+    public SpriteRenderer(Entity parentEntity, Texture2D sprite, int layer) : base(parentEntity)
+    {
+        this.sprite = sprite;
+        this.layer = layer;
+
         transform = parentEntity.GetComponent<Transform>();
     }
 
@@ -27,7 +37,7 @@ public class SpriteRenderer : Component
             effector = SpriteEffects.FlipHorizontally;
         }
 
-        spriteBatch.Draw(sprite, transform.GetPosition(), null, Color.White, transform.GetRotation(), Vector2.Zero, transform.GetScaleABS(), effector, 0);
+        spriteBatch.Draw(sprite, transform.GetPosition(), null, Color.White, transform.GetRotation(), Vector2.Zero, transform.GetScaleABS(), effector, layer);
     }
 
     public override void Update(GameTime gameTime)
@@ -38,5 +48,9 @@ public class SpriteRenderer : Component
     }
     public void SetSprite(Texture2D sprite){
         this.sprite = sprite;
+    }
+
+    public void SetLayer(int layer){
+        this.layer = layer;
     }
 }

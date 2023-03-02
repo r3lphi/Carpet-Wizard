@@ -16,27 +16,27 @@ public static class DebugTools
             y + (int)Globals.Canvas_Offset.Y,
             width,
             1
-        ), Color.White);
-
+        ), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+        
         spriteBatch.Draw(DebugLine, new Rectangle(
             x + (int)Globals.Canvas_Offset.X,
             y + (int)Globals.Canvas_Offset.Y,
             1,
             height
-        ), Color.White);
-
-        spriteBatch.Draw(DebugLine, new Rectangle(
-            x + (int)Globals.Canvas_Offset.X + width,
-            y + (int)Globals.Canvas_Offset.Y,
-            1,
-            height
-        ), Color.White);
+        ), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
 
         spriteBatch.Draw(DebugLine, new Rectangle(
             x + (int)Globals.Canvas_Offset.X,
-            y + (int)Globals.Canvas_Offset.Y + height,
+            y + (int)Globals.Canvas_Offset.Y + Globals.Tile_Size,
             width,
             1
-        ), Color.White);
+        ), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+        spriteBatch.Draw(DebugLine, new Rectangle(
+            x + (int)Globals.Canvas_Offset.X + Globals.Tile_Size,
+            y + (int)Globals.Canvas_Offset.Y,
+            1,
+            height
+        ), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
     }
 }
