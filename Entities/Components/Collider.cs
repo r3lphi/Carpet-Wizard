@@ -10,21 +10,16 @@ public class Collider : Component
     private Transform transform;
     private PhysicsBody physicsBody;
 
-    private Vector2 oversize_index;
+    private Vector2 bounds;
+    private Vector2 offset;
 
     public Collider(Entity parentEntity) : base(parentEntity)
     {
         transform = parentEntity.GetComponent<Transform>();
         physicsBody = parentEntity.GetComponent<PhysicsBody>();
 
-        oversize_index = Vector2.One;
-    }
-    public Collider(Entity parentEntity, Vector2 oversize_index) : base(parentEntity)
-    {
-        transform = parentEntity.GetComponent<Transform>();
-        physicsBody = parentEntity.GetComponent<PhysicsBody>();
-
-        this.oversize_index = oversize_index;
+        bounds = Vector2.One;
+        offset = Vector2.Zero;
     }
 
     public override void Update(GameTime gameTime)
@@ -37,10 +32,28 @@ public class Collider : Component
 
         DebugTools.DrawEmptyRect(
             spriteBatch,
-            (int)transform.GetPosition().X,
-            (int)transform.GetPosition().Y,
-            16 * (int)oversize_index.X,
-            16 * (int)oversize_index.Y
+            (int)transform.GetPosition().X + (int)offset.X,
+            (int)transform.GetPosition().Y + (int)offset.Y,
+            Globals.Tile_Size * (int)bounds.X,
+            Globals.Tile_Size * (int)bounds.Y
         );
+    }
+
+    public void SetBounds(Vector2 bounds){
+        this.bounds = bounds;
+
+        //Centering Code
+
+        // offset -= new Vector2(
+        //     (Globals.Tile_Size * ((int)bounds.X - 1)) / 2,
+        //     (Globals.Tile_Size * ((int)bounds.Y - 1)) / 2
+        // );
+    }
+    public Vector2 GetBounds(){
+        return bounds;
+    }
+    
+    public void SetOffset(Vector2 offset){
+        this.offset = offset;
     }
 }

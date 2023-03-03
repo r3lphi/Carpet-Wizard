@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using System;
 
@@ -22,6 +21,8 @@ public class Tilemap
         this.screen_y = screen_y;
 
         InitializeMap();
+
+        collidermap = new Collidermap(this);
     }
 
     private void InitializeMap()
@@ -65,7 +66,23 @@ public class Tilemap
     }
     private void BitmapToTilemap(int[,] bitmap)
     {
-        Print2DArray(bitmap);
+        for (int x = 0; x < bitmap.GetLength(0); x++){
+            for (int y = 0; y < bitmap.GetLength(1); y++){
+                int id = bitmap[x, y];
+
+                if (id < 0 || id > Globals.s_Level.GetLength(0)){
+                    continue;
+                }
+
+                Tile tile = new Tile(Globals.s_Level[id]);
+                tile.GetComponent<Transform>().SetPosition(new Vector2(
+                    x * Globals.Tile_Size,
+                    y * Globals.Tile_Size
+                ));
+
+                data.SetValue(tile, x, y);
+            }
+        }
     }
 
     public Tile[,] GetData(){
@@ -73,17 +90,5 @@ public class Tilemap
     }
     public Collidermap GetColliderMap(){
         return collidermap;
-    }
-
-    public static void Print2DArray<T>(T[,] matrix)
-    {
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                Console.Write(matrix[i, j] + "\t");
-            }
-            Console.WriteLine();
-        }
     }
 }

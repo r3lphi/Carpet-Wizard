@@ -15,6 +15,16 @@ public class GameplayState : ProgramState
         Player player = new Player();
         player.Recenter();
 
+        Object collider = new Object();
+
+        collider.AddComponent(new Collider(collider));
+        collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
+
+        collider.GetComponent<Collider>().SetBounds(new Vector2(
+            4,
+            2
+        ));
+
         activeScreen = new Screen(new List<Entity>{
             player
         });

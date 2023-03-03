@@ -77,7 +77,7 @@ public class GameCore : Game
         _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
 
         float renderScale = 1f / ((float)_display.GetPreferredWidth() / GraphicsDevice.Viewport.Width);
-        Debug.WriteLine(_display.GetPreferredWidth() + " : " + GraphicsDevice.Viewport.Width + " = Render Scale Of: " + renderScale);
+        // Debug.WriteLine(_display.GetPreferredWidth() + " : " + GraphicsDevice.Viewport.Width + " = Render Scale Of: " + renderScale);
 
         _spriteBatch.Draw(_display.GetRenderTarget(), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, renderScale, SpriteEffects.None, 0f);
 
