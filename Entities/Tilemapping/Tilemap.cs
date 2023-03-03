@@ -22,48 +22,50 @@ public class Tilemap
         this.screen_y = screen_y;
 
         InitializeMap();
-
-        collidermap = new Collidermap(this);
     }
 
-    private void InitializeMap(){
+    private void InitializeMap()
+    {
+        int[,] bitmap = GenerateBitmap();
+        BitmapToTilemap(bitmap);
+    }
+
+    private int[,] GenerateBitmap()
+    {
         string filename = "Screen_" + world + "_" + level + "_" + screen_x + "_" + screen_y + ".txt";
         string[] bitdata = FileManager.ReadLinesFromFile(FileManager.screensFolder, filename);
+
+        int[,] bitmap = new int[(int)Globals.Canvas_Size.X, (int)Globals.Canvas_Size.Y];
 
         int x = 0;
         int y = 0;
 
-        int[,] bitmap = new int[(int)Globals.Canvas_Size.X, (int)Globals.Canvas_Size.Y];
-        
-        foreach (string line in bitdata){
+        foreach (String line in bitdata){
             foreach (char character in line){
                 if (!Char.IsDigit(character)){
-                    bitmap[x, y] = -1;
+                    if (character.ToString().Equals("n")){
+                        bitmap[x, y] = -1;
+                        x++;
+                    }
+
                     continue;
                 }
 
-                int id = Int32.Parse(character.ToString());
-
-                if (id >= Globals.s_Level.Length){
-                    bitmap[x, y] = -1;
-                    continue;
-                }
+                int id = Convert.ToInt32(character.ToString());
 
                 bitmap[x, y] = id;
+                x++;
             }
+
+            x = 0;
+            y++;
         }
 
-        for (int _x = 0; _x < (int)Globals.Canvas_Size.X; _x++){
-            for (int _y = 0; _y < (int)Globals.Canvas_Size.Y; _y++){
-                data[_x, _y] = new Tile(Globals.s_Level[id]);
-                data[_x, _y].GetComponent<Transform>().SetPosition(new Vector2(
-                    _x * Globals.Tile_Size,
-                    _y * Globals.Tile_Size
-                ));
-
-                _x++;
-            }
-        }
+        return bitmap;
+    }
+    private void BitmapToTilemap(int[,] bitmap)
+    {
+        Print2DArray(bitmap);
     }
 
     public Tile[,] GetData(){
@@ -71,5 +73,17 @@ public class Tilemap
     }
     public Collidermap GetColliderMap(){
         return collidermap;
+    }
+
+    public static void Print2DArray<T>(T[,] matrix)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                Console.Write(matrix[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
     }
 }

@@ -34,7 +34,7 @@ public class Screen
         }
 
         if (Globals.DebugMode){
-            tilemap.GetColliderMap().Draw(spriteBatch);
+            //TODO
         }
 
         foreach (Entity e in entities){
