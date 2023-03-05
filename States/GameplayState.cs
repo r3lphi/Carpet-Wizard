@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using System.Collections.Generic;
 using System;
@@ -32,6 +33,13 @@ public class GameplayState : ProgramState
 
     public override void Update(GameTime gameTime)
     {
+        if (Keyboard.GetState().IsKeyDown(Keys.F4)){
+            Globals.DebugMode = true;
+        }
+        if (Keyboard.GetState().IsKeyUp(Keys.F4)){
+            Globals.DebugMode = false;
+        }
+
         activeScreen.Update(gameTime);
     }
 

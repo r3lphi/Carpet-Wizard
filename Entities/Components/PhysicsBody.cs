@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System.Diagnostics;
+
 namespace Carpet_Wizard;
 
 public class PhysicsBody : Component
@@ -8,7 +10,7 @@ public class PhysicsBody : Component
     private Transform transform;
 
     //Physics Logic
-    private float gravity = 0f;
+    private float gravity = 0.25f;
     private float friction = 20f;
     
     //Stored Variables
@@ -35,5 +37,17 @@ public class PhysicsBody : Component
 
     public void AddForce(Vector2 force){
         velocity += force;
+    }
+
+    //Getters & Setters
+    public void SetGravity(float gravity){
+        this.gravity = gravity;
+    }
+
+    public Vector2 GetVelocity(){
+        return velocity;
+    }
+    public void SetVelocity(Vector2 velocity){
+        this.velocity = velocity;
     }
 }

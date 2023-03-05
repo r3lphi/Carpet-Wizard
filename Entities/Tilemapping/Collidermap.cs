@@ -93,4 +93,8 @@ public class Collidermap
             collider.Draw(spriteBatch);
         }
     }
+
+    public List<Object> GetColliders(){
+        return colliders;
+    }
 }

@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Carpet_Wizard;
 
-public static class DebugTools
+public static class ToolsExtended
 {
     public static void DrawEmptyRect(SpriteBatch spriteBatch, int x, int y, int width, int height){
         Texture2D DebugLine = new Texture2D(Globals.Graphics.GraphicsDevice, 1, 1);
@@ -38,5 +38,27 @@ public static class DebugTools
             1,
             height
         ), null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+    }
+    public static bool isTouching(Rectangle a, Rectangle b){
+        return (
+            a.X <= b.X + b.Width &&
+            a.X + a.Width >= b.X &&
+            a.Y <= b.Y + b.Height &&
+            a.Y + a.Height >= b.Y
+        );
+    }
+    public static Rectangle EntityToRect(Entity e){
+        Rectangle eRect = new Rectangle(
+            new Point(
+                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<Collider>().GetOffset().X),
+                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<Collider>().GetOffset().Y)
+            ),
+            new Point(
+                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetBounds().X),
+                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetBounds().Y)
+            )
+        );
+
+        return eRect;
     }
 }

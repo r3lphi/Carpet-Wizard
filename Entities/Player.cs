@@ -21,15 +21,15 @@ public class Player : Creature
         AddComponent(new PhysicsBody(this, GetComponent<Transform>()));
 
         Anim_Idle = new Animation(new AnimationFrame[]{
-            new AnimationFrame(Globals.s_Player[0], .2f),
-            new AnimationFrame(Globals.s_Player[1], .2f),
-            new AnimationFrame(Globals.s_Player[2], .2f)
+            new AnimationFrame(Globals.s_Player[0], .1f),
+            new AnimationFrame(Globals.s_Player[1], .1f),
+            new AnimationFrame(Globals.s_Player[2], .1f)
         });
         Anim_Idle.SetDriver("isMoving", 0);
 
         Anim_Run = new Animation(new AnimationFrame[]{
-            new AnimationFrame(Globals.s_Player[3], .15f),
-            new AnimationFrame(Globals.s_Player[4], .15f),
+            new AnimationFrame(Globals.s_Player[3], .075f),
+            new AnimationFrame(Globals.s_Player[4], .075f),
         });
         Anim_Run.SetDriver("isMoving", 1);
 
@@ -71,20 +71,14 @@ public class Player : Creature
             transform.SetScale(new Vector2(-transform.GetScaleABS().X, transform.GetScale().Y));
         }
 
-        collider.Update(gameTime);
-
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
         animator.SetGlobalDriver("isMoving", ConvertsExtended.BoolToInt(isMoving));
-
-        animator.Update(gameTime);
 
         base.Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
         spriteRenderer.SetSprite(animator.GetActiveSprite());
-
-        collider.Draw(spriteBatch);
 
         base.Draw(spriteBatch);
     }

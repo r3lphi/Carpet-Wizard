@@ -30,7 +30,7 @@ public class Collider : Component
             return;
         }
 
-        DebugTools.DrawEmptyRect(
+        ToolsExtended.DrawEmptyRect(
             spriteBatch,
             (int)transform.GetPosition().X + (int)offset.X,
             (int)transform.GetPosition().Y + (int)offset.Y,
@@ -55,5 +55,8 @@ public class Collider : Component
     
     public void SetOffset(Vector2 offset){
         this.offset = offset;
+    }
+    public Vector2 GetOffset(){
+        return offset;
     }
 }

@@ -24,8 +24,6 @@ public abstract class Creature : Entity
 
     public override void Update(GameTime gameTime)
     {
-        GetComponent<PhysicsBody>().Update(gameTime);
-
         base.Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)

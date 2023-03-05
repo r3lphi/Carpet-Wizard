@@ -49,8 +49,9 @@ public static class Globals
         s_Player[3] = Content.Load<Texture2D>("Player_Run_00");
         s_Player[4] = Content.Load<Texture2D>("Player_Run_01");
 
-        s_Level = new Texture2D[1];
+        s_Level = new Texture2D[2];
         s_Level[0] = Content.Load<Texture2D>("Snow");
+        s_Level[1] = Content.Load<Texture2D>("Snow_Below");
 
         s_Misc = new Texture2D[1];
         s_Misc[0] = Content.Load<Texture2D>("MissingTex");
