@@ -116,8 +116,8 @@ public class Quadtree
                 (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<Collider>().GetOffset().Y)
             ),
             new Point(
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetBounds().X),
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetBounds().Y)
+                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().X),
+                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().Y)
             )
         );
 

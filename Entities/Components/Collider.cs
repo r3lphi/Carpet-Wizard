@@ -10,7 +10,7 @@ public class Collider : Component
     private Transform transform;
     private PhysicsBody physicsBody;
 
-    private Vector2 bounds;
+    private Vector2 size;
     private Vector2 offset;
 
     public Collider(Entity parentEntity) : base(parentEntity)
@@ -18,7 +18,7 @@ public class Collider : Component
         transform = parentEntity.GetComponent<Transform>();
         physicsBody = parentEntity.GetComponent<PhysicsBody>();
 
-        bounds = Vector2.One;
+        size = Vector2.One;
         offset = Vector2.Zero;
     }
 
@@ -34,23 +34,23 @@ public class Collider : Component
             spriteBatch,
             (int)transform.GetPosition().X + (int)offset.X,
             (int)transform.GetPosition().Y + (int)offset.Y,
-            Globals.Tile_Size * (int)bounds.X,
-            Globals.Tile_Size * (int)bounds.Y
+            Globals.Tile_Size * (int)size.X,
+            Globals.Tile_Size * (int)size.Y
         );
     }
 
-    public void SetBounds(Vector2 bounds){
-        this.bounds = bounds;
+    public void SetSize(Vector2 size){
+        this.size = size;
 
         //Centering Code
 
         // offset -= new Vector2(
-        //     (Globals.Tile_Size * ((int)bounds.X - 1)) / 2,
-        //     (Globals.Tile_Size * ((int)bounds.Y - 1)) / 2
+        //     (Globals.Tile_Size * ((int)size.X - 1)) / 2,
+        //     (Globals.Tile_Size * ((int)size.Y - 1)) / 2
         // );
     }
-    public Vector2 GetBounds(){
-        return bounds;
+    public Vector2 GetSize(){
+        return size;
     }
     
     public void SetOffset(Vector2 offset){

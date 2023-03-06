@@ -10,6 +10,7 @@ public class Player : Creature
 {
     private float moveSpeed = 40f;
     private float acceleration = 2f;
+    private float jumpHeight = 0.5f;
     private Animation Anim_Idle, Anim_Run;
 
     //Localized Variables
@@ -71,8 +72,14 @@ public class Player : Creature
             transform.SetScale(new Vector2(-transform.GetScaleABS().X, transform.GetScale().Y));
         }
 
+        if (keyState.IsKeyDown(Keys.Space)){
+            physicsBody.AddForce(new Vector2(0, -jumpHeight));
+        }
+
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
         animator.SetGlobalDriver("isMoving", ConvertsExtended.BoolToInt(isMoving));
+
+        Debug.WriteLine("Velocity: " + GetComponent<PhysicsBody>().GetVelocity());
 
         base.Update(gameTime);
     }

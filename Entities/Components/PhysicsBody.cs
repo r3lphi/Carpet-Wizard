@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
 using System.Diagnostics;
 
 namespace Carpet_Wizard;
@@ -10,7 +11,7 @@ public class PhysicsBody : Component
     private Transform transform;
 
     //Physics Logic
-    private float gravity = 0.25f;
+    private float gravity = 9.81f;
     private float friction = 20f;
     
     //Stored Variables
@@ -27,7 +28,7 @@ public class PhysicsBody : Component
     {
         velocity.Y += gravity * Globals.DeltaTime;
 
-        transform.SetPosition(transform.GetPosition() + velocity);
+        transform.SetPosition(transform.GetPosition() + new Vector2(velocity.X, velocity.Y));
 
         //Horizontal Friction
         velocity.X -= velocity.X * (friction * Globals.DeltaTime);

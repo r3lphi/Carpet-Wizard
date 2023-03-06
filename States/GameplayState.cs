@@ -21,7 +21,7 @@ public class GameplayState : ProgramState
         collider.AddComponent(new Collider(collider));
         collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
 
-        collider.GetComponent<Collider>().SetBounds(new Vector2(
+        collider.GetComponent<Collider>().SetSize(new Vector2(
             4,
             2
         ));
