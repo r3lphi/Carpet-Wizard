@@ -60,7 +60,10 @@ public class Collidermap
             y * Globals.Tile_Size
         ));
 
-        collider.GetComponent<Collider>().SetSize(new Vector2(1, height));
+        collider.GetComponent<Collider>().SetSize(new Vector2(
+            Globals.Tile_Size, 
+            Globals.Tile_Size * height
+        ));
 
         colliders.Add(collider);
     }
@@ -80,8 +83,8 @@ public class Collidermap
             }
 
             colliders[index].GetComponent<Collider>().SetSize(new Vector2(
-                colliders[index].GetComponent<Collider>().GetSize().X + 1,
-                colliders[index].GetComponent<Collider>().GetSize().Y
+                colliders[index].GetComponent<Collider>().GetSize().X + colliders[index + 1].GetComponent<Collider>().GetSize().X,
+                colliders[index].GetComponent<Collider>().GetSize().Y + colliders[index + 1].GetComponent<Collider>().GetSize().Y
             ));
 
             colliders.RemoveAt(index + 1);

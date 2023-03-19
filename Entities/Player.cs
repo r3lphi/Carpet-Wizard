@@ -43,7 +43,6 @@ public class Player : Creature
         });
 
         AddComponent(animator);
-        AddComponent(new Collider(this));
 
         Initialize();
     }
@@ -52,11 +51,13 @@ public class Player : Creature
     {
         base.Initialize();
 
+        spriteRenderer.SetSprite(Globals.s_Player[0]);
+        AddComponent(new Collider(this));
+
         transform = GetComponent<Transform>();
         physicsBody = GetComponent<PhysicsBody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider>();
-        spriteRenderer.SetSprite(Globals.s_Player[0]);
     }
 
     public override void Update(GameTime gameTime)

@@ -22,12 +22,13 @@ public class GameplayState : ProgramState
         collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
 
         collider.GetComponent<Collider>().SetSize(new Vector2(
-            4,
-            2
+            16,
+            16
         ));
 
         activeScreen = new Screen(new List<Entity>{
-            player
+            player,
+            collider
         });
     }
 

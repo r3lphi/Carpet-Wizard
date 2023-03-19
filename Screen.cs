@@ -69,61 +69,44 @@ public class Screen
                 if (ToolsExtended.isTouching(
                     ToolsExtended.EntityToRect(entities[i]),
                     ToolsExtended.EntityToRect(o)
-                )){
+                ))
+                {
+                    if (!entities[i].ContainsComponent<PhysicsBody>()){
+                        continue;
+                    }
+
+                    Transform creatureTransform = entities[i].GetComponent<Transform>();
                     Collider creatureCollider = entities[i].GetComponent<Collider>();
+
+                    Transform objectTransform = o.GetComponent<Transform>();
                     Collider objectCollider = o.GetComponent<Collider>();
-
-                    //Checking if collided object is under entity
-                    if (o.GetComponent<Transform>().GetPosition().Y >= entities[i].GetComponent<Transform>().GetPosition().Y){
-                        if (entities[i].GetComponent<PhysicsBody>().GetVelocity().Y <= 0){
-                            continue;
-                        }
-
-                        //Newton's Third Law
+                    
+                    //Checking if touching entity from bottom
+                    if (creatureCollider.GetBottomBound() <= objectCollider.GetUpperBound()){
                         entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
                             0,
                             -entities[i].GetComponent<PhysicsBody>().GetVelocity().Y
                         ));
-                        //Relocation
-                        entities[i].GetComponent<Transform>().SetPosition(new Vector2(
-                            entities[i].GetComponent<Transform>().GetPosition().X,
-                            o.GetComponent<Transform>().GetPosition().Y - (entities[i].GetComponent<SpriteRenderer>().GetSprite().Height)
+                        creatureTransform.SetPosition(new Vector2(
+                            creatureTransform.GetPosition().X,
+                            objectCollider.GetUpperBound() - ((creatureTransform.GetScale().Y * creatureCollider.GetSize().Y) + creatureCollider.GetOffset().Y)
                         ));
 
                         continue;
                     }
 
-                    //Checking if collided object is on the left of the entity
-                    if (o.GetComponent<Transform>().GetPosition().X < entities[i].GetComponent<Transform>().GetPosition().X){
-                        if (entities[i].GetComponent<PhysicsBody>().GetVelocity().X >= 0){
-                            continue;
-                        }
+                    // if (creatureCollider.GetLeftBound() <= objectCollider.GetRightBound()){
+                    //     entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
+                    //         -entities[i].GetComponent<PhysicsBody>().GetVelocity().X,
+                    //         0
+                    //     ));
+                    //     creatureTransform.SetPosition(new Vector2(
+                    //         objectCollider.GetRightBound() + ((creatureTransform.GetScale().X * creatureCollider.GetSize().X) + creatureCollider.GetOffset().X),
+                    //         creatureTransform.GetPosition().Y
+                    //     ));
 
-                        entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
-                            -entities[i].GetComponent<PhysicsBody>().GetVelocity().X,
-                            0
-                        ));
-                        entities[i].GetComponent<Transform>().SetPosition(new Vector2(
-                            o.GetComponent<Transform>().GetPosition().X + (entities[i].GetComponent<SpriteRenderer>().GetSprite().Width),
-                            entities[i].GetComponent<Transform>().GetPosition().Y
-                        ));
-                    }
-
-                    //Checking if collided object is on the right of the entity
-                    if (o.GetComponent<Transform>().GetPosition().X - (objectCollider.GetSize().X / 2) > entities[i].GetComponent<Transform>().GetPosition().X + (creatureCollider.GetSize().X / 2)){
-                        if (entities[i].GetComponent<PhysicsBody>().GetVelocity().X <= 0){
-                            continue;
-                        }
-                        
-                        entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
-                            -entities[i].GetComponent<PhysicsBody>().GetVelocity().X,
-                            0
-                        ));
-                        entities[i].GetComponent<Transform>().SetPosition(new Vector2(
-                            o.GetComponent<Transform>().GetPosition().X - (entities[i].GetComponent<SpriteRenderer>().GetSprite().Width),
-                            entities[i].GetComponent<Transform>().GetPosition().Y
-                        ));
-                    }
+                    //     continue;
+                    // }
                 }
             }
         }

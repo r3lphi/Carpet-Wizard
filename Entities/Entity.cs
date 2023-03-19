@@ -29,6 +29,15 @@ public abstract class Entity
 
         return null;
     }
+    public bool ContainsComponent<T>() where T : Component{
+        foreach(Component component in Components){
+            if (component.GetType().Equals(typeof(T))){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public abstract void Initialize();
     

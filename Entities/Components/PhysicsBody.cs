@@ -11,7 +11,7 @@ public class PhysicsBody : Component
     private Transform transform;
 
     //Physics Logic
-    private float gravity = 9.81f;
+    private float gravity = Globals.Gravity;
     private float friction = 20f;
     
     //Stored Variables

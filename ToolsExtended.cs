@@ -54,8 +54,8 @@ public static class ToolsExtended
                 (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<Collider>().GetOffset().Y)
             ),
             new Point(
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().X),
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().Y)
+                (int)e.GetComponent<Collider>().GetSize().X,
+                (int)e.GetComponent<Collider>().GetSize().Y
             )
         );
 
