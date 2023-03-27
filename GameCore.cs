@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Carpet_Wizard;
 
-public class GameCore : Game
+public sealed class GameCore : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;

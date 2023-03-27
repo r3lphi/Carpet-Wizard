@@ -11,6 +11,8 @@ public static class Globals
     //Variables
     public static float DeltaTime { get; set; }
     public static float Gravity { get; set; }
+    public static float Min_Density { get; set; }
+    public static float Max_Density { get; set; }
     public static ContentManager Content { get; set; }
     public static SpriteBatch SpriteBatch { get; set; }
     public static GraphicsDeviceManager Graphics { get; set; }
@@ -27,6 +29,9 @@ public static class Globals
         DebugMode = true;
 
         Gravity = 9.81f;
+
+        Min_Density = 0;
+        Max_Density = 22.6f;
 
         Content = _content;
         SpriteBatch = _spriteBatch;
