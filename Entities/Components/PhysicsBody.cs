@@ -71,7 +71,7 @@ public class PhysicsBody : Component
 
         float mass = area * density;
 
-        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoCircleCollider(parentEntity, radius));
+        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoCircleCollider(parentEntity, transform, radius));
 
         return true;
     }
@@ -102,17 +102,50 @@ public class PhysicsBody : Component
 
         float mass = area * density;
 
-        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoBoxCollider(parentEntity, size));
+        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoBoxCollider(parentEntity, transform, size));
 
         return true;
     }
 
     public override void Update(GameTime gameTime)
     {
+        collider.Update(gameTime);
 
+        //Gravity
+        // AddForce(new Vector2(0, Globals.Gravity * Globals.DeltaTime));
+
+        //Applying Velocity-Based Forces
+        transform.SetPosition(transform.GetPosition() + velocity * Globals.DeltaTime);
+
+        // rotation += Globals.DeltaTime;
+
+        transform.SetRotation(rotation);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
+        collider.Draw(spriteBatch);
+    }
 
+    public void AddForce(Vector2 force){
+        velocity += force;
+        
+        if (collider.GetColliderType() is ColliderType.Box){
+            GetColliderAs<DynamoBoxCollider>().RequireTransformUpdate();
+        }
+    }
+    public void Rotate(float rotation){
+        this.rotation += rotation;
+
+        if (collider.GetColliderType() is ColliderType.Box){
+            GetColliderAs<DynamoBoxCollider>().RequireTransformUpdate();
+        }
+    }
+
+    public T GetColliderAs<T>() where T : DynamoCollider{
+        return (T)collider;
+    }
+
+    public float GetRotation(){
+        return rotation;
     }
 }

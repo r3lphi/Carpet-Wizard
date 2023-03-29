@@ -23,6 +23,18 @@ public class Screen
             e.Update(gameTime);
         }
 
+        for (int x = 0; x < (int)Globals.Canvas_Size.X; x++){
+            for (int y = 0; y < (int)Globals.Canvas_Size.Y; y++){
+                if (tilemap.GetData()[x, y] == null){
+                    continue;
+                }
+
+                tilemap.GetData()[x, y].Update(gameTime);
+            }
+        }
+
+        tilemap.GetCollisionmap().Update(gameTime);
+
         CollisionDetection();
     }
     public void Draw(SpriteBatch spriteBatch){
@@ -37,7 +49,7 @@ public class Screen
         }
 
         if (Globals.DebugMode){
-            tilemap.GetColliderMap().Draw(spriteBatch);
+            tilemap.GetCollisionmap().Draw(spriteBatch);
         }
 
         foreach (Entity e in entities){
@@ -51,7 +63,7 @@ public class Screen
         foreach (Entity e in entities){
             quadtree.insert(e);
         }
-        foreach(Object collider in tilemap.GetColliderMap().GetColliders()){
+        foreach(Object collider in tilemap.GetCollisionmap().GetColliders()){
             quadtree.insert(collider);
         }
 
@@ -66,48 +78,7 @@ public class Screen
                     continue;
                 }
 
-                if (ToolsExtended.isTouching(
-                    ToolsExtended.EntityToRect(entities[i]),
-                    ToolsExtended.EntityToRect(o)
-                ))
-                {
-                    if (!entities[i].ContainsComponent<PhysicsBody>()){
-                        continue;
-                    }
-
-                    Transform creatureTransform = entities[i].GetComponent<Transform>();
-                    Collider creatureCollider = entities[i].GetComponent<Collider>();
-
-                    Transform objectTransform = o.GetComponent<Transform>();
-                    Collider objectCollider = o.GetComponent<Collider>();
-                    
-                    //Checking if touching entity from bottom
-                    if (creatureCollider.GetBottomBound() <= objectCollider.GetUpperBound()){
-                        entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
-                            0,
-                            -entities[i].GetComponent<PhysicsBody>().GetVelocity().Y
-                        ));
-                        creatureTransform.SetPosition(new Vector2(
-                            creatureTransform.GetPosition().X,
-                            objectCollider.GetUpperBound() - ((creatureTransform.GetScale().Y * creatureCollider.GetSize().Y) + creatureCollider.GetOffset().Y)
-                        ));
-
-                        continue;
-                    }
-
-                    // if (creatureCollider.GetLeftBound() <= objectCollider.GetRightBound()){
-                    //     entities[i].GetComponent<PhysicsBody>().AddForce(new Vector2(
-                    //         -entities[i].GetComponent<PhysicsBody>().GetVelocity().X,
-                    //         0
-                    //     ));
-                    //     creatureTransform.SetPosition(new Vector2(
-                    //         objectCollider.GetRightBound() + ((creatureTransform.GetScale().X * creatureCollider.GetSize().X) + creatureCollider.GetOffset().X),
-                    //         creatureTransform.GetPosition().Y
-                    //     ));
-
-                    //     continue;
-                    // }
-                }
+                //TODO
             }
         }
     }

@@ -4,15 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using Carpet_Wizard;
+
 namespace Dynamo;
 
 public class DynamoCircleCollider : DynamoCollider{
     private float radius;
 
-    public DynamoCircleCollider(Entity parentEntity) : base(parentEntity, ColliderType.Circle){
+    public DynamoCircleCollider(Entity parentEntity, Transform transform) : base(ColliderType.Circle, transform){
         radius = 1;
     }
-    public DynamoCircleCollider(Entity parentEntity, float radius) : base(parentEntity, ColliderType.Circle){
+    public DynamoCircleCollider(Entity parentEntity, Transform transform, float radius) : base(ColliderType.Circle, transform){
         this.radius = radius;
     }
 

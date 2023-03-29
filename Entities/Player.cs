@@ -4,11 +4,13 @@ using Microsoft.Xna.Framework.Input;
 
 using System.Diagnostics;
 
+using Dynamo;
+
 namespace Carpet_Wizard;
 
 public class Player : Creature
 {
-    private float moveSpeed = 40f;
+    private float moveSpeed = 20f;
     private float acceleration = 2f;
     private float jumpHeight = 0.5f;
     private Animation Anim_Idle, Anim_Run;
@@ -16,11 +18,8 @@ public class Player : Creature
     //Localized Variables
     private PhysicsBody physicsBody;
     private Animator animator;
-    private Collider collider;
 
     public Player(){
-        AddComponent(new PhysicsBody(this, GetComponent<Transform>()));
-
         Anim_Idle = new Animation(new AnimationFrame[]{
             new AnimationFrame(Globals.s_Player[0], .1f),
             new AnimationFrame(Globals.s_Player[1], .1f),
@@ -52,12 +51,17 @@ public class Player : Creature
         base.Initialize();
 
         spriteRenderer.SetSprite(Globals.s_Player[0]);
-        AddComponent(new Collider(this));
+
+        if (PhysicsBody.CreateBoxBody(this, transform, new Vector2(Globals.Tile_Size, Globals.Tile_Size), 1, 0, false, out physicsBody, out string err)){
+            AddComponent(physicsBody);
+        }
+        else{
+            throw new System.Exception(err);
+        }
 
         transform = GetComponent<Transform>();
         physicsBody = GetComponent<PhysicsBody>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<Collider>();
     }
 
     public override void Update(GameTime gameTime)
@@ -65,11 +69,11 @@ public class Player : Creature
         KeyboardState keyState = Keyboard.GetState();
 
         if (keyState.IsKeyDown(Keys.D)){
-            physicsBody.AddForce(new Vector2(moveSpeed * Globals.DeltaTime, 0));
+            physicsBody.AddForce(new Vector2(moveSpeed, 0));
             transform.SetScale(new Vector2(transform.GetScaleABS().X, transform.GetScale().Y));
         }
         if (keyState.IsKeyDown(Keys.A)){
-            physicsBody.AddForce(new Vector2(-moveSpeed * Globals.DeltaTime, 0));
+            physicsBody.AddForce(new Vector2(-moveSpeed, 0));
             transform.SetScale(new Vector2(-transform.GetScaleABS().X, transform.GetScale().Y));
         }
 
@@ -80,7 +84,9 @@ public class Player : Creature
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
         animator.SetGlobalDriver("isMoving", ConvertsExtended.BoolToInt(isMoving));
 
-        Debug.WriteLine("Velocity: " + GetComponent<PhysicsBody>().GetVelocity());
+        // Debug.WriteLine("Velocity: " + GetComponent<PhysicsBody>().GetVelocity());
+
+        // physicsBody.Rotate(Globals.DeltaTime);
 
         base.Update(gameTime);
     }

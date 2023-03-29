@@ -58,9 +58,8 @@ public static class Globals
         s_Level[0] = Content.Load<Texture2D>("Snow");
         s_Level[1] = Content.Load<Texture2D>("Snow_Below");
 
-        s_Misc = new Texture2D[1];
+        s_Misc = new Texture2D[2];
         s_Misc[0] = Content.Load<Texture2D>("MissingTex");
-
     }
     public static void Update(GameTime gameTime){
         DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;

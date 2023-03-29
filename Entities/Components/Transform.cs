@@ -8,7 +8,7 @@ namespace Carpet_Wizard;
 public class Transform : Component
 {
     private Vector2 position;
-    private int rotation;
+    private float rotation;
     private Vector2 scale;
 
     public Transform(Entity parentEntity) : base(parentEntity)
@@ -17,7 +17,7 @@ public class Transform : Component
         rotation = 0;
         scale = Vector2.One;
     }
-    public Transform(Entity parentEntity, Vector2 _position, int _rotation, Vector2 _scale) : base(parentEntity)
+    public Transform(Entity parentEntity, Vector2 _position, float _rotation, Vector2 _scale) : base(parentEntity)
     {
         position = _position;
         rotation = _rotation;
@@ -36,10 +36,10 @@ public class Transform : Component
         position = _position;
     }
 
-    public int GetRotation(){
+    public float GetRotation(){
         return rotation;
     }
-    public void SetRotation(int _rotation){
+    public void SetRotation(float _rotation){
         rotation = _rotation;
     }
 

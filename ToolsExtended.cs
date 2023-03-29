@@ -1,7 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+
+using Dynamo;
 
 namespace Carpet_Wizard;
 
@@ -50,15 +54,34 @@ public static class ToolsExtended
     public static Rectangle EntityToRect(Entity e){
         Rectangle eRect = new Rectangle(
             new Point(
-                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<Collider>().GetOffset().X),
-                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<Collider>().GetOffset().Y)
+                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().X),
+                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().Y)
             ),
             new Point(
-                (int)e.GetComponent<Collider>().GetSize().X,
-                (int)e.GetComponent<Collider>().GetSize().Y
+                (int)e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X,
+                (int)e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y
             )
         );
 
         return eRect;
     }
+    public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Color[] paint)
+       {
+        //initialize a texture
+        Texture2D texture = new Texture2D(device, width, height);
+
+        //the array holds the color for each pixel in the texture
+        Color[] data = new Color[width * height];
+        for(int pixel = 0; pixel < data.Length; pixel++)
+        {
+            //the function applies the color according to the specified pixel
+            data[pixel] = paint[pixel];
+        }
+
+        //set the color
+        texture.SetData(data);
+
+        return texture;
+    }
+
 }

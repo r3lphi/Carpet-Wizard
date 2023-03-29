@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using Dynamo;
+
 namespace Carpet_Wizard;
 
 public class Quadtree
@@ -106,18 +108,18 @@ public class Quadtree
     }
 
     public void insert(Entity e){
-        if (e.GetComponent<Collider>() == null){
+        if (e.GetComponent<PhysicsBody>() == null){
             return;
         }
 
         Rectangle eRect = new Rectangle(
             new Point(
-                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<Collider>().GetOffset().X),
-                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<Collider>().GetOffset().Y)
+                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().X),
+                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().Y)
             ),
             new Point(
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().X),
-                (int)(Globals.Tile_Size * e.GetComponent<Collider>().GetSize().Y)
+                (int)(Globals.Tile_Size * e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X),
+                (int)(Globals.Tile_Size * e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y)
             )
         );
 

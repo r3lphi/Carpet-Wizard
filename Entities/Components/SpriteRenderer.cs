@@ -37,7 +37,7 @@ public class SpriteRenderer : Component
             effector = SpriteEffects.FlipHorizontally;
         }
 
-        spriteBatch.Draw(sprite, transform.GetPosition(), null, Color.White, transform.GetRotation(), Vector2.Zero, transform.GetScaleABS(), effector, layer);
+        spriteBatch.Draw(sprite, transform.GetPosition() + new Vector2(sprite.Width / 2, sprite.Height / 2), null, Color.White, transform.GetRotation(), new Vector2(sprite.Width / 2, sprite.Height / 2), transform.GetScaleABS(), effector, layer);
     }
 
     public override void Update(GameTime gameTime)

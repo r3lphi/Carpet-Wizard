@@ -18,17 +18,17 @@ public class GameplayState : ProgramState
 
         Object collider = new Object();
 
-        collider.AddComponent(new Collider(collider));
-        collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
+        if (PhysicsBody.CreateBoxBody(collider, collider.GetComponent<Transform>(), new Vector2(Globals.Tile_Size, Globals.Tile_Size) , 1, 0, true, out PhysicsBody body, out string err)){
+            collider.AddComponent(body);
+        }
+        else{
+            throw new Exception(err);
+        }
 
-        collider.GetComponent<Collider>().SetSize(new Vector2(
-            16,
-            16
-        ));
+        collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
 
         activeScreen = new Screen(new List<Entity>{
             player,
-            collider
         });
     }
 
@@ -40,6 +40,8 @@ public class GameplayState : ProgramState
         if (Keyboard.GetState().IsKeyUp(Keys.F4)){
             Globals.DebugMode = false;
         }
+
+        // Console.WriteLine(Globals.DebugMode);
 
         activeScreen.Update(gameTime);
     }

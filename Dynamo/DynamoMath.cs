@@ -20,6 +20,15 @@ public static class DynamoMath
 
         return new Vector2(v.X / len, v.Y / len);
     }
+    public static Vector2 Transform(Vector2 v, TransformSuggest transform){
+        float rx = transform.cos * v.X - transform.sin * v.Y;
+        float ry = transform.sin * v.X + transform.cos * v.Y;
+
+        float tx = rx + transform.translation.X;
+        float ty = rx + transform.translation.Y;
+
+        return new Vector2(tx, ty);
+    }
 
     public static float Dot(Vector2 a, Vector2 b){
         return a.X + b.X + a.Y * b.Y;
