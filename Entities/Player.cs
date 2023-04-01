@@ -78,7 +78,7 @@ public class Player : Creature
         }
 
         if (keyState.IsKeyDown(Keys.Space)){
-            physicsBody.AddForce(new Vector2(0, -jumpHeight));
+            transform.SetPosition(transform.GetPosition() + new Vector2(0, 5 * Globals.DeltaTime));
         }
 
         bool isMoving = (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D));
@@ -86,7 +86,9 @@ public class Player : Creature
 
         // Debug.WriteLine("Velocity: " + GetComponent<PhysicsBody>().GetVelocity());
 
-        // physicsBody.Rotate(Globals.DeltaTime);
+        physicsBody.Rotate(2 * Globals.DeltaTime);
+
+        physicsBody.AddForce(new Vector2(0, Globals.Gravity) * Globals.DeltaTime);
 
         base.Update(gameTime);
     }

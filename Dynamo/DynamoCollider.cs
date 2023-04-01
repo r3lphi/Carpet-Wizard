@@ -18,15 +18,17 @@ public abstract class DynamoCollider
 {
     private Vector2 offset;
 
-    private readonly ColliderType colliderType;
+    public readonly ColliderType colliderType;
     public readonly Transform transform;
+    public readonly PhysicsBody parentBody;
 
-    public DynamoCollider(ColliderType colliderType, Transform transform)
+    public DynamoCollider(PhysicsBody parentBody, ColliderType colliderType, Transform transform)
     {        
         offset = Vector2.Zero;
 
         this.colliderType = colliderType;
         this.transform = transform;
+        this.parentBody = parentBody;
     }
 
     public virtual void Initialize(){}
@@ -38,11 +40,5 @@ public abstract class DynamoCollider
     }
     public Vector2 GetOffset(){
         return offset;
-    }
-    public Transform GetTransform(){
-        return transform;
-    }
-    public ColliderType GetColliderType(){
-        return colliderType;
     }
 }

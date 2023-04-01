@@ -11,10 +11,10 @@ namespace Dynamo;
 public class DynamoCircleCollider : DynamoCollider{
     private float radius;
 
-    public DynamoCircleCollider(Entity parentEntity, Transform transform) : base(ColliderType.Circle, transform){
+    public DynamoCircleCollider(PhysicsBody parentBody, Transform transform) : base(parentBody, ColliderType.Circle, transform){
         radius = 1;
     }
-    public DynamoCircleCollider(Entity parentEntity, Transform transform, float radius) : base(ColliderType.Circle, transform){
+    public DynamoCircleCollider(PhysicsBody parentBody, Transform transform, float radius) : base(parentBody, ColliderType.Circle, transform){
         this.radius = radius;
     }
 

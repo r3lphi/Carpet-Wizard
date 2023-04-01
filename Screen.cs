@@ -5,6 +5,8 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Dynamo;
+
 namespace Carpet_Wizard;
 
 public class Screen
@@ -73,12 +75,25 @@ public class Screen
             intersectables.Clear();
             quadtree.getIntersectables(intersectables, entities[i]);
 
+            PhysicsBody bodyA = entities[i].GetComponent<PhysicsBody>();
+
             foreach(Entity o in intersectables){
-                if (o == entities[i]){
+                if (o == entities[i] || !o.ContainsComponent<PhysicsBody>()){
                     continue;
                 }
 
-                //TODO
+                PhysicsBody bodyB = o.GetComponent<PhysicsBody>();
+
+                if (DynamoCollisionHandler.PolygonsIntersect(
+                    bodyA.GetColliderAs<DynamoBoxCollider>().GetTransformedVertices(), 
+                    bodyB.GetColliderAs<DynamoBoxCollider>().GetTransformedVertices())){
+                        bodyA.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Blue;
+                        bodyB.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Blue;
+                }
+                else{
+                    bodyA.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Red;
+                    bodyB.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Red;
+                }
             }
         }
     }

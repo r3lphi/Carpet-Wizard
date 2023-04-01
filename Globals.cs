@@ -60,6 +60,7 @@ public static class Globals
 
         s_Misc = new Texture2D[2];
         s_Misc[0] = Content.Load<Texture2D>("MissingTex");
+        s_Misc[1] = Content.Load<Texture2D>("BoxColliderOutline");
     }
     public static void Update(GameTime gameTime){
         DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;

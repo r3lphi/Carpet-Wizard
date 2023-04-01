@@ -12,28 +12,35 @@ namespace Dynamo;
 public class DynamoBoxCollider : DynamoCollider{
     private Vector2 size;
 
-    private readonly Vector2[] vertices;
-    private readonly int[] triangles;
-
+    private Vector2[] vertices;
     private Vector2[] transformedVertices;
 
-    private bool transformUpdateRequired;
+    private int[] triangles;
 
     private Texture2D outline;
+    
+    public Color outline_color = Color.Red;
 
     private int debug_padding = 1;
 
-    public DynamoBoxCollider(Entity parentEntity, Transform transform, Vector2 size) : base(ColliderType.Box, transform){
+    public DynamoBoxCollider(PhysicsBody parentBody, Transform transform, Vector2 size) : base(parentBody, ColliderType.Box, transform){
         this.size = size;
         
-        vertices = GenVertices(size);
+        GenVertices(new Rectangle((int)transform.GetPosition().X,
+            (int)transform.GetPosition().Y,
+            (int)size.X,
+            (int)size.Y
+        ));
+        
         transformedVertices = new Vector2[vertices.Length];
 
         triangles = TriangulateBox();
 
-        transformUpdateRequired = true;
-
         RegenerateOutline(1);
+    }
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
@@ -41,35 +48,29 @@ public class DynamoBoxCollider : DynamoCollider{
             return;
         }
 
-        // ToolsExtended.DrawEmptyRect(
-        //     spriteBatch,
-        //     (int)transform.GetPosition().X,
-        //     (int)transform.GetPosition().Y,
-        //     (int)size.X,
-        //     (int)size.Y
-        // );
-
         spriteBatch.Draw(outline, transform.GetPosition() + new Vector2(outline.Width / 2, outline.Height / 2), null, Color.White, transform.GetRotation(), new Vector2(outline.Width / 2, outline.Height / 2), Vector2.One, SpriteEffects.None, 1);
+
+        foreach (Vector2 v in transformedVertices){
+            spriteBatch.Draw(Globals.s_Misc[1], v + new Vector2(size.X / 2, size.Y / 2), null, Color.Red, 0, new Vector2(size.X / 2, size.Y / 2), Vector2.One, SpriteEffects.None, 1);
+        }
 
         base.Draw(spriteBatch);
     }
 
-    private static Vector2[] GenVertices(Vector2 dim){
-        float left = -dim.X / 2;
-        float right = left + dim.X;
-        float bottom = -dim.Y / 2;
-        float top = bottom + dim.Y;
+    private void GenVertices(Rectangle dim){
+        float left = dim.X;
+        float right = dim.X + dim.Width;
+        float bottom = dim.Y + dim.Height;
+        float top = dim.Y;
 
-        Vector2[] vertices = new Vector2[4];
+        vertices = new Vector2[4];
         vertices[0] = new Vector2(left, top);
         vertices[1] = new Vector2(right, top);
         vertices[2] = new Vector2(right, bottom);
         vertices[3] = new Vector2(left, bottom);
-
-        return vertices;
     }
 
-    private static int[] TriangulateBox(){
+    private int[] TriangulateBox(){
         int[] triangles = new int[6];
 
         triangles[0] = 0;
@@ -82,18 +83,16 @@ public class DynamoBoxCollider : DynamoCollider{
         return triangles;
     }
 
-    public Vector2[] GetTransformedVertices(PhysicsBody body){
-        if (transformUpdateRequired){
-            TransformSuggest transformation = new TransformSuggest(transform.GetPosition(), body.GetRotation());
+    public void TransformVertices(){
+        TransformSuggest transformation = new TransformSuggest(transform.GetPosition(), transform.GetRotation());
 
-            for (int i = 0; i < vertices.Length; i++){
-                Vector2 v = vertices[i];
-                transformedVertices[i] = DynamoMath.Transform(v, transformation);
-            }
+        for (int i = 0; i < vertices.Length; i++){
+            transformedVertices[i] = DynamoMath.Transform(vertices[i], transformation);
         }
 
         RegenerateOutline(debug_padding);
-
+    }
+    public Vector2[] GetTransformedVertices(){
         return transformedVertices;
     }
 
@@ -107,14 +106,16 @@ public class DynamoBoxCollider : DynamoCollider{
         //     (Globals.Tile_Size * ((int)size.Y - 1)) / 2
         // );
 
+        GenVertices(new Rectangle((int)transform.GetPosition().X,
+            (int)transform.GetPosition().Y,
+            (int)size.X,
+            (int)size.Y
+        ));
+
         RegenerateOutline(debug_padding);
     }
     public Vector2 GetSize(){
         return size;
-    }
-
-    public void RequireTransformUpdate(){
-        transformUpdateRequired = true;
     }
 
     private void RegenerateOutline(int padding){
@@ -125,12 +126,12 @@ public class DynamoBoxCollider : DynamoCollider{
         Color[] pixelData = new Color[(int)(totalSize.X * totalSize.Y)];
 
         for (int i = 0; i < totalSize.X; i++){
-            pixelData[i] = Color.Red;
-            pixelData[(int)((totalSize.X * totalSize.Y) - 1) - i] = Color.Red;
+            pixelData[i] = outline_color;
+            pixelData[(int)((totalSize.X * totalSize.Y) - 1) - i] = outline_color;
         }
         for (int i = 1; i < totalSize.Y; i++){
-            pixelData[(int)(totalSize.X) * i] = Color.Red;
-            pixelData[(int)((totalSize.X) * i) - 1] = Color.Red;
+            pixelData[(int)(totalSize.X) * i] = outline_color;
+            pixelData[(int)((totalSize.X) * i) - 1] = outline_color;
         }
 
         texture.SetData(pixelData);

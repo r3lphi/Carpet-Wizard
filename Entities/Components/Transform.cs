@@ -52,4 +52,17 @@ public class Transform : Component
     public void SetScale(Vector2 _scale){
         scale = _scale;
     }
+
+    public override bool Equals(object obj)
+    {
+        if ((obj is Transform) == false){
+            return false;
+        }
+
+        Transform other = (Transform)obj;
+
+        bool result = (other.position == position) && (other.rotation == rotation) && (other.scale == scale);
+
+        return result;
+    }
 }

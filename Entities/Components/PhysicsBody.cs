@@ -71,7 +71,7 @@ public class PhysicsBody : Component
 
         float mass = area * density;
 
-        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoCircleCollider(parentEntity, transform, radius));
+        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoCircleCollider(body, transform, radius));
 
         return true;
     }
@@ -102,7 +102,7 @@ public class PhysicsBody : Component
 
         float mass = area * density;
 
-        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoBoxCollider(parentEntity, transform, size));
+        body = new PhysicsBody(parentEntity, transform, mass, density, restitution, isStatic, new DynamoBoxCollider(body, transform, size));
 
         return true;
     }
@@ -128,17 +128,9 @@ public class PhysicsBody : Component
 
     public void AddForce(Vector2 force){
         velocity += force;
-        
-        if (collider.GetColliderType() is ColliderType.Box){
-            GetColliderAs<DynamoBoxCollider>().RequireTransformUpdate();
-        }
     }
     public void Rotate(float rotation){
         this.rotation += rotation;
-
-        if (collider.GetColliderType() is ColliderType.Box){
-            GetColliderAs<DynamoBoxCollider>().RequireTransformUpdate();
-        }
     }
 
     public T GetColliderAs<T>() where T : DynamoCollider{
