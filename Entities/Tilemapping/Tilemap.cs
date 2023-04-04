@@ -7,7 +7,7 @@ namespace Carpet_Wizard;
 public class Tilemap
 {
     private Tile[,] data = new Tile[(int)Globals.Canvas_Size.X, (int)Globals.Canvas_Size.Y];
-    private Collisionmap collidermap;
+    // private Collisionmap collidermap;
 
     private int world;
     private int level;
@@ -22,7 +22,7 @@ public class Tilemap
 
         InitializeMap();
 
-        collidermap = new Collisionmap(this);
+        // collidermap = new Collisionmap(this);
     }
 
     private void InitializeMap()
@@ -88,7 +88,7 @@ public class Tilemap
     public Tile[,] GetData(){
         return data;
     }
-    public Collisionmap GetCollisionmap(){
-        return collidermap;
-    }
+    // public Collisionmap GetCollisionmap(){
+    //     return collidermap;
+    // }
 }

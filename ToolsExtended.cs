@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-using Dynamo;
-
 namespace Carpet_Wizard;
 
 public static class ToolsExtended
@@ -54,12 +52,12 @@ public static class ToolsExtended
     public static Rectangle EntityToRect(Entity e){
         Rectangle eRect = new Rectangle(
             new Point(
-                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().X),
-                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetOffset().Y)
+                (int)(e.GetComponent<Transform>().GetPosition().X + e.GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().offset.X),
+                (int)(e.GetComponent<Transform>().GetPosition().Y + e.GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().offset.Y)
             ),
             new Point(
-                (int)e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X,
-                (int)e.GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y
+                (int)e.GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().size.X,
+                (int)e.GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().size.Y
             )
         );
 

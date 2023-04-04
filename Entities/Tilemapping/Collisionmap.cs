@@ -5,8 +5,6 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-using Dynamo;
-
 namespace Carpet_Wizard;
 
 public class Collisionmap
@@ -23,6 +21,8 @@ public class Collisionmap
     }
 
     private void Initialize(){
+        List<Rectangle> tileNums = new List<Rectangle>();
+
         for (int x = 0; x < parentMap.GetData().GetLength(0); x++){
             int heightStreak = 0;
             int startingY = 0;
@@ -33,7 +33,7 @@ public class Collisionmap
                         continue;
                     }
 
-                    FormCollider(heightStreak, x, startingY);
+                    tileNums.Add(new Rectangle(x, startingY, Globals.Tile_Size, heightStreak));
                     heightStreak = 0;
                     continue;
                 }
@@ -46,51 +46,65 @@ public class Collisionmap
             }
 
             if (heightStreak > 0){
-                FormCollider(heightStreak, x, startingY);
+                tileNums.Add(new Rectangle(x, startingY, parentMap.GetData()[x, startingY].GetComponent<SpriteRenderer>().GetSprite().Width, heightStreak));
             }
         }
 
-        MeshColliders(0);
+        MeshColliders(tileNums);
     }
 
-    public void FormCollider(int height, int x, int y){
-        Object collider = new Object();
+    // public void FormCollider(int height, int x, int y){
+    //     Object collider = new Object();
 
-        if (PhysicsBody.CreateBoxBody(collider, collider.GetComponent<Transform>(), new Vector2(Globals.Tile_Size, Globals.Tile_Size * height), 10, 0, true, out PhysicsBody body, out string err)){
-            collider.AddComponent(body);
-        }
-        else{
-            throw new Exception(err);
-        }
+    //     if (PhysicsBody.CreateBoxBody(collider, collider.GetComponent<Transform>(), new Vector2(Globals.Tile_Size, Globals.Tile_Size * height), Vector2.Zero, 10, 0, true, out PhysicsBody body, out string err)){
+    //         collider.AddComponent(body);
+    //     }
+    //     else{
+    //         throw new Exception(err);
+    //     }
 
-        collider.GetComponent<Transform>().SetPosition(new Vector2(
-            x * Globals.Tile_Size,
-            y * Globals.Tile_Size
-        ));
+    //     collider.GetComponent<Transform>().SetPosition(new Vector2(
+    //         x * Globals.Tile_Size,
+    //         y * Globals.Tile_Size
+    //     ));
 
-        colliders.Add(collider);
+    //     colliders.Add(collider);
+    // }
+
+    public void MeshColliders(List<Rectangle> tileNums){
+        MeshColliders(tileNums, 0);
     }
-
-    public void MeshColliders(){
-        MeshColliders(0);
-    }
-    public void MeshColliders(int startingIndex){
+    public void MeshColliders(List<Rectangle> tileNums, int startingIndex){
         int index = startingIndex;
 
         Vector2 rootPos = colliders[index].GetComponent<Transform>().GetPosition();
 
         while(index + 1 < colliders.Count){
             if (colliders[index + 1].GetComponent<Transform>().GetPosition().Y != rootPos.Y){
-                MeshColliders(index + 1);
+                if (PhysicsBody.CreateBoxBody(colliders[index], colliders[index].GetComponent<Transform>(), new Vector2(tileNums[index].X + tileNums[index + 1].X, tileNums[index].Y + tileNums[index + 1].Y), Vector2.Zero, 0, 0, true, out PhysicsBody body, out string err)){
+                    colliders[index].AddComponent(body);
+                }
+                else{
+                    throw new Exception(err);
+                }
+
+                MeshColliders(tileNums, index + 1);
                 break;
             }
 
-            colliders[index].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().SetSize(new Vector2(
-                colliders[index].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X + colliders[index + 1].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X,
-                colliders[index].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y + colliders[index + 1].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y
-            ));
+            tileNums[index] = new Rectangle(
+                tileNums[index].X,
+                tileNums[index].Y,
+                tileNums[index].Width + (int)colliders[index + 1].GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().size.X,
+                tileNums[index].Height
+            );
 
-            colliders.RemoveAt(index + 1);
+            // colliders[index].GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().SetSize(new Vector2(
+            //     colliders[index].GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().GetSize().X + colliders[index + 1].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().X,
+            //     colliders[index].GetComponent<PhysicsBody>().GetColliderAs<BoxCollider>().GetSize().Y + colliders[index + 1].GetComponent<PhysicsBody>().GetColliderAs<DynamoBoxCollider>().GetSize().Y
+            // ));
+
+            tileNums.RemoveAt(index + 1);
         }
     }
 

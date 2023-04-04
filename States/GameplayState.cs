@@ -18,17 +18,18 @@ public class GameplayState : ProgramState
 
         Object collider = new Object();
 
-        if (PhysicsBody.CreateBoxBody(collider, collider.GetComponent<Transform>(), new Vector2(Globals.Tile_Size, Globals.Tile_Size) , 1, 0, true, out PhysicsBody body, out string err)){
+        if (PhysicsBody.CreateBoxBody(collider, collider.GetComponent<Transform>(), new Vector2(Globals.Tile_Size, Globals.Tile_Size), Vector2.Zero, 1, 0, true, out PhysicsBody body, out string err)){
             collider.AddComponent(body);
         }
         else{
             throw new Exception(err);
         }
 
-        collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition());
+        collider.GetComponent<Transform>().SetPosition(player.GetComponent<Transform>().GetPosition() + new Vector2(0, 100));
 
         activeScreen = new Screen(new List<Entity>{
             player,
+            collider
         });
     }
 

@@ -5,19 +5,17 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Dynamo;
-
 namespace Carpet_Wizard;
 
 public class Screen
 {
     private List<Entity> entities = new List<Entity>();
     private Quadtree quadtree = new Quadtree(0, new Rectangle(0, 0, Globals.Graphics.PreferredBackBufferWidth, Globals.Graphics.PreferredBackBufferHeight));
-    private Tilemap tilemap;
+    // private Tilemap tilemap;
 
     public Screen(List<Entity> startingEntites){
         entities = startingEntites;
-        tilemap = new Tilemap(0, 0, 0, 0);
+        // tilemap = new Tilemap(0, 0, 0, 0);
     }
 
     public void Update(GameTime gameTime){
@@ -25,34 +23,34 @@ public class Screen
             e.Update(gameTime);
         }
 
-        for (int x = 0; x < (int)Globals.Canvas_Size.X; x++){
-            for (int y = 0; y < (int)Globals.Canvas_Size.Y; y++){
-                if (tilemap.GetData()[x, y] == null){
-                    continue;
-                }
+        // for (int x = 0; x < (int)Globals.Canvas_Size.X; x++){
+        //     for (int y = 0; y < (int)Globals.Canvas_Size.Y; y++){
+        //         if (tilemap.GetData()[x, y] == null){
+        //             continue;
+        //         }
 
-                tilemap.GetData()[x, y].Update(gameTime);
-            }
-        }
+        //         tilemap.GetData()[x, y].Update(gameTime);
+        //     }
+        // }
 
-        tilemap.GetCollisionmap().Update(gameTime);
+        // tilemap.GetCollisionmap().Update(gameTime);
 
         CollisionDetection();
     }
     public void Draw(SpriteBatch spriteBatch){
-        for (int x = 0; x < (int)Globals.Canvas_Size.X; x++){
-            for (int y = 0; y < (int)Globals.Canvas_Size.Y; y++){
-                if (tilemap.GetData()[x, y] == null){
-                    continue;
-                }
+        // for (int x = 0; x < (int)Globals.Canvas_Size.X; x++){
+        //     for (int y = 0; y < (int)Globals.Canvas_Size.Y; y++){
+        //         if (tilemap.GetData()[x, y] == null){
+        //             continue;
+        //         }
 
-                tilemap.GetData()[x, y].Draw(spriteBatch);
-            }
-        }
+        //         tilemap.GetData()[x, y].Draw(spriteBatch);
+        //     }
+        // }
 
-        if (Globals.DebugMode){
-            tilemap.GetCollisionmap().Draw(spriteBatch);
-        }
+        // if (Globals.DebugMode){
+        //     tilemap.GetCollisionmap().Draw(spriteBatch);
+        // }
 
         foreach (Entity e in entities){
             e.Draw(spriteBatch);
@@ -65,9 +63,9 @@ public class Screen
         foreach (Entity e in entities){
             quadtree.insert(e);
         }
-        foreach(Object collider in tilemap.GetCollisionmap().GetColliders()){
-            quadtree.insert(collider);
-        }
+        // foreach(Object collider in tilemap.GetCollisionmap().GetColliders()){
+        //     quadtree.insert(collider);
+        // }
 
         List<Entity> intersectables = new List<Entity>();
 
@@ -84,15 +82,15 @@ public class Screen
 
                 PhysicsBody bodyB = o.GetComponent<PhysicsBody>();
 
-                if (DynamoCollisionHandler.PolygonsIntersect(
-                    bodyA.GetColliderAs<DynamoBoxCollider>().GetTransformedVertices(), 
-                    bodyB.GetColliderAs<DynamoBoxCollider>().GetTransformedVertices())){
-                        bodyA.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Blue;
-                        bodyB.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Blue;
+                if (Collisions.PolygonsIntersect(
+                    bodyA.GetColliderAs<BoxCollider>().GetTransformedVertices(), 
+                    bodyB.GetColliderAs<BoxCollider>().GetTransformedVertices())){
+                        bodyA.GetColliderAs<BoxCollider>().SetOutlineColor(Color.Blue);
+                        bodyB.GetColliderAs<BoxCollider>().SetOutlineColor(Color.Blue);
                 }
                 else{
-                    bodyA.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Red;
-                    bodyB.GetColliderAs<DynamoBoxCollider>().outline_color = Color.Red;
+                    bodyA.GetColliderAs<BoxCollider>().SetOutlineColor(Color.Red);
+                    bodyB.GetColliderAs<BoxCollider>().SetOutlineColor(Color.Red);
                 }
             }
         }

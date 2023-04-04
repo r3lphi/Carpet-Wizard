@@ -61,8 +61,10 @@ public class Transform : Component
 
         Transform other = (Transform)obj;
 
-        bool result = (other.position == position) && (other.rotation == rotation) && (other.scale == scale);
+        bool positionEqual = (other.position.X == position.X) && (other.position.Y == position.Y);
+        bool rotationEqual = other.rotation == rotation;
+        bool scaleEqual = (other.scale.X == scale.X) && (other.scale.Y == scale.Y);
 
-        return result;
+        return (positionEqual && rotationEqual && scaleEqual);
     }
 }

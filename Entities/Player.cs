@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System.Diagnostics;
 
-using Dynamo;
-
 namespace Carpet_Wizard;
 
 public class Player : Creature
@@ -52,7 +50,7 @@ public class Player : Creature
 
         spriteRenderer.SetSprite(Globals.s_Player[0]);
 
-        if (PhysicsBody.CreateBoxBody(this, transform, new Vector2(Globals.Tile_Size, Globals.Tile_Size), 1, 0, false, out physicsBody, out string err)){
+        if (PhysicsBody.CreateBoxBody(this, transform, new Vector2(Globals.Tile_Size, Globals.Tile_Size), Vector2.Zero, 1, 0, false, out physicsBody, out string err)){
             AddComponent(physicsBody);
         }
         else{
@@ -76,6 +74,12 @@ public class Player : Creature
             physicsBody.AddForce(new Vector2(-moveSpeed, 0));
             transform.SetScale(new Vector2(-transform.GetScaleABS().X, transform.GetScale().Y));
         }
+        if (keyState.IsKeyDown(Keys.W)){
+            physicsBody.AddForce(new Vector2(0, -moveSpeed));
+        }
+        if (keyState.IsKeyDown(Keys.S)){
+            physicsBody.AddForce(new Vector2(0, moveSpeed));
+        }
 
         if (keyState.IsKeyDown(Keys.Space)){
             transform.SetPosition(transform.GetPosition() + new Vector2(0, 5 * Globals.DeltaTime));
@@ -86,9 +90,9 @@ public class Player : Creature
 
         // Debug.WriteLine("Velocity: " + GetComponent<PhysicsBody>().GetVelocity());
 
-        physicsBody.Rotate(2 * Globals.DeltaTime);
+        // physicsBody.Rotate(2 * Globals.DeltaTime);
 
-        physicsBody.AddForce(new Vector2(0, Globals.Gravity) * Globals.DeltaTime);
+        // physicsBody.AddForce(new Vector2(0, Globals.Gravity));
 
         base.Update(gameTime);
     }
