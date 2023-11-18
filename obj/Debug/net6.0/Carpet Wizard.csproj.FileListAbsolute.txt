@@ -1,25 +1,59 @@
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\Carpet Wizard.exe
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\Carpet Wizard.deps.json
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\Carpet Wizard.runtimeconfig.json
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\Carpet Wizard.dll
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\Carpet Wizard.pdb
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\MonoGame.Framework.dll
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
-C:\Users\nottn\Projects\Carpet Wizard\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.csproj.AssemblyReference.cache
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.AssemblyInfoInputs.cache
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.AssemblyInfo.cs
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.csproj.CoreCompileInputs.cache
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.csproj.CopyComplete
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.dll
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\refint\Carpet Wizard.dll
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.pdb
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\Carpet Wizard.genruntimeconfig.cache
-C:\Users\nottn\Projects\Carpet Wizard\obj\Debug\net6.0\ref\Carpet Wizard.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/Carpet Wizard.exe
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/Carpet Wizard.deps.json
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/Carpet Wizard.runtimeconfig.json
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/Carpet Wizard.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/Carpet Wizard.pdb
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/MonoGame.Framework.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+C:/Users/nottn/Projects/Carpet Wizard/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.AssemblyReference.cache
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.AssemblyInfoInputs.cache
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.AssemblyInfo.cs
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.CoreCompileInputs.cache
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.CopyComplete
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.dll
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/refint/Carpet Wizard.dll
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.pdb
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/Carpet Wizard.genruntimeconfig.cache
+C:/Users/nottn/Projects/Carpet Wizard/obj/Debug/net6.0/ref/Carpet Wizard.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Carpet Wizard
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Carpet Wizard.deps.json
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Carpet Wizard.runtimeconfig.json
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Carpet Wizard.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Carpet Wizard.pdb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/MonoGame.Framework.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.AssemblyReference.cache
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.AssemblyInfoInputs.cache
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.AssemblyInfo.cs
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.CoreCompileInputs.cache
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.csproj.CopyComplete
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.dll
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/refint/Carpet Wizard.dll
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.pdb
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/Carpet Wizard.genruntimeconfig.cache
+/Users/ralph/Projects/Carpet-Wizard/obj/Debug/net6.0/ref/Carpet Wizard.dll
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/BoxColliderOutline.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/MissingTex.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Player_Idle_00.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Player_Idle_01.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Player_Idle_02.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Player_Run_00.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Player_Run_01.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Snow.xnb
+/Users/ralph/Projects/Carpet-Wizard/bin/Debug/net6.0/Content/Snow_Below.xnb

@@ -102,19 +102,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nottn\\.nuget\\packages\\": {}
+    "/Users/ralph/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nottn\\Projects\\Carpet Wizard\\Carpet Wizard.csproj",
+      "projectUniqueName": "/Users/ralph/Projects/Carpet-Wizard/Carpet Wizard.csproj",
       "projectName": "Carpet Wizard",
-      "projectPath": "C:\\Users\\nottn\\Projects\\Carpet Wizard\\Carpet Wizard.csproj",
-      "packagesPath": "C:\\Users\\nottn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nottn\\Projects\\Carpet Wizard\\obj\\",
+      "projectPath": "/Users/ralph/Projects/Carpet-Wizard/Carpet Wizard.csproj",
+      "packagesPath": "/Users/ralph/.nuget/packages/",
+      "outputPath": "/Users/ralph/Projects/Carpet-Wizard/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nottn\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/ralph/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -164,15 +164,11 @@
             "version": "[6.0.24, 6.0.24]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "name": "Microsoft.NETCore.App.Host.osx-x64",
             "version": "[6.0.24, 6.0.24]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.24, 6.0.24]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
             "version": "[6.0.24, 6.0.24]"
           }
         ],
@@ -181,7 +177,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
       }
     }
   }

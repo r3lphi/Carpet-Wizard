@@ -1,0 +1,10 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/ralph/Projects/Carpet-Wizard/Content/BoxColliderOutline.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/BoxColliderOutline.xnb","TextureProcessor","Texture2DContent",137,121,0.535336
+"/Users/ralph/Projects/Carpet-Wizard/Content/MissingTex.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/MissingTex.xnb","TextureProcessor","Texture2DContent",107,1109,0.025154
+"/Users/ralph/Projects/Carpet-Wizard/Content/Player_Idle_00.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Player_Idle_00.xnb","TextureProcessor","Texture2DContent",371,1109,0.025785
+"/Users/ralph/Projects/Carpet-Wizard/Content/Player_Idle_01.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Player_Idle_01.xnb","TextureProcessor","Texture2DContent",374,1109,0.013549
+"/Users/ralph/Projects/Carpet-Wizard/Content/Player_Idle_02.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Player_Idle_02.xnb","TextureProcessor","Texture2DContent",402,1109,0.02192
+"/Users/ralph/Projects/Carpet-Wizard/Content/Player_Run_00.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Player_Run_00.xnb","TextureProcessor","Texture2DContent",371,1109,0.022868
+"/Users/ralph/Projects/Carpet-Wizard/Content/Player_Run_01.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Player_Run_01.xnb","TextureProcessor","Texture2DContent",379,1109,0.027326
+"/Users/ralph/Projects/Carpet-Wizard/Content/Snow_Below.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Snow_Below.xnb","TextureProcessor","Texture2DContent",308,1109,0.018934
+"/Users/ralph/Projects/Carpet-Wizard/Content/Snow.png","/Users/ralph/Projects/Carpet-Wizard/Content/bin/DesktopGL/Snow.xnb","TextureProcessor","Texture2DContent",206,1109,0.025011
